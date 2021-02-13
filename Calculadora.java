@@ -10,7 +10,7 @@ public class Calculadora implements ActionListener {
     private JPanel txtPanel, numPanel;
     private JTextField resTxtF, opeTxtF;
     private JButton numButton[], opeButton[], pButton;
-    
+    private double res;
     
     public Calculadora(){
         frame = new JFrame("Calculadora");
@@ -48,8 +48,8 @@ public class Calculadora implements ActionListener {
         opeButton[2] = new JButton("-");
         opeButton[3] = new JButton("*");
         opeButton[4] = new JButton("/");
-        opeButton[5] = new JButton("%");
-        opeButton[6] = new JButton("1/x");
+        opeButton[5] = new JButton("π");
+        opeButton[6] = new JButton("√");
         opeButton[7] = new JButton("C");
         opeButton[8] = new JButton("^");
         //Añadimos a todos el ActionListener
@@ -93,12 +93,93 @@ public class Calculadora implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == opeButton[7]){
-            opeTxtF.setText("Se presiono C");
+        JButton s = (JButton) e.getSource();
+        String temp = "";
+        //Evaluando cada botón
+        if(s == numButton[0]){
+            //0
+
+        }
+        if(s == numButton[1]){
+            //1
+
+        }
+        if(s == numButton[2]){
+            //2
+
+        }
+        if(s == numButton[3]){
+            //3
+
+        }
+        if(s == numButton[4]){
+            //4
+
+        }
+        if(s == numButton[5]){
+            //5
+
+        }
+        if(s == numButton[6]){
+            //6
+
+        }
+        if(s == numButton[7]){
+            //7
+
+        }
+        if(s == numButton[8]){
+            //8
+
+        }
+        if(s == numButton[9]){
+            //9
+
+        }
+        if(s == opeButton[0]){
+            //=
+
+        }
+        if(s == opeButton[1]){
+            //+
+
+        }
+        if(s == opeButton[2]){
+            //-
+
+        }
+        if(s == opeButton[3]){
+            //*
+
+        }
+        if(s == opeButton[4]){
+            //÷ 
+
+        }
+        if(s == opeButton[5]){
+            //π
+            temp = temp + 3.1416;
+        }
+        if(s == opeButton[6]){
+            //√
+
+        }
+        if(s == opeButton[7]){
+            //C
+
+        }
+        if(s == opeButton[8]){
+            //^
+
+        }
+        if(s == pButton){
+            //.
+            
         }
 
+
         //c++;
-        //opeTxtF.setText("Popo "+c);
+        opeTxtF.setText(temp);
     }
 
 }
