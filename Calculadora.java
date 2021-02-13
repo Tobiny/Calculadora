@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 
+
 public class Calculadora implements ActionListener {
 
     private JFrame frame;
@@ -93,7 +94,7 @@ public class Calculadora implements ActionListener {
     }
 
 
-    private String n[] = new String[2];
+    private String n[] = {"", ""};
     private String t = "";
     private int c = 0;
     private int ope = 0;
@@ -154,27 +155,47 @@ public class Calculadora implements ActionListener {
         }
         if(s == opeButton[0]){
             //=
-            //efectuaOp();
+            efectuaOp(n, ope);
         }
         if(s == opeButton[1]){
             //+
             ope = 1;
-            t = t + '+';
+            if(valida(t, c)){
+                t = t + '+';
+                c++;
+            }
+
+            
+
         }
         if(s == opeButton[2]){
             //-
+            
             ope = 2;
-            t = t + '-';
+            if(t.isEmpty()){
+                t = t + '-';
+            } else if(valida(t, c)){
+                t = t + '-';
+                c++;
+            }
+
         }
         if(s == opeButton[3]){
             //*
             ope = 3;
-            t = t + '-';
+            if(valida(t, c)){
+                t = t + '*';
+                c++;
+            }
+
         }
         if(s == opeButton[4]){
             //÷ 
             ope = 4;
-            t = t + '-';
+            if(valida(t, c)){
+                t = t + '/';
+                c++;
+            }
         }
         if(s == opeButton[5]){
             //π
@@ -183,12 +204,20 @@ public class Calculadora implements ActionListener {
         if(s == opeButton[6]){
             //√
             ope = 5;
+            if(valida(t, c)){
+                t = t + '√';
+                c++;
+            }
 
         }
         if(s == opeButton[7]){
             //C
             //borrar();
             t ="";
+            c = 0;
+            n[0] = "";
+            n[1] = "";
+            resTxtF.setText("");
         }
         if(s == opeButton[8]){
             //^
@@ -203,7 +232,7 @@ public class Calculadora implements ActionListener {
                     n[c] = n[c] + '.';
                     t = t + '.';
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error", "Error 2", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error", "Titulo ventana", JOptionPane.WARNING_MESSAGE);
                 }
             }
             
@@ -212,6 +241,47 @@ public class Calculadora implements ActionListener {
 
         //c++;
         opeTxtF.setText(t);
+        
+    }
+    private void efectuaOp(String[] n, int ope){
+        double a, b;
+        a = Double.parseDouble(n[0]);
+        b = Double.parseDouble(n[1]);
+        switch (ope) {
+            case 1:
+                resTxtF.setText(Double.toString(a+b));
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+        
+            default:
+                break;
+        }
+    }
+    private boolean valida(String a, int l){
+        boolean c = false;
+        if(!t.isEmpty()){
+            if((!(a.charAt(a.length()-1) == '-' ||  a.charAt(a.length()-1) == '+' || a.charAt(a.length()-1) == '*' || a.charAt(a.length()-1) == '/' || a.charAt(a.length()-1) == '-' || a.charAt(a.length()-1) == '^')) && l != 1){
+                c = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Error", "Titulo ventana", JOptionPane.WARNING_MESSAGE);
+            }
+        } else JOptionPane.showMessageDialog(null, "Error", "Titulo ventana", JOptionPane.WARNING_MESSAGE);
+        return c;
     }
 
 }
