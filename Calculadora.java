@@ -155,74 +155,70 @@ public class Calculadora implements ActionListener {
                 n[c] = n[c] + 9;
                 t = t + 9;
             }
-        }
-        if(s == opeButton[0]){
-            //=
-            efectuaOp(n, ope);
-            resuelto = 1;
-        }
-        if(s == opeButton[1]){
-            //+
-            
-            if(valida(t, c)){
-                t = t + '+';
-                c++;
-                ope = 1;
-            }
-        }
-        if(s == opeButton[2]){
-            //-
-
-            if(t.isEmpty()){
-                t = t + '-';
-            } else if(valida(t, c)){
-                t = t + '-';
-                c++;
-                ope = 2;
-            }
-
-        }
-        if(s == opeButton[3]){
-            //*
-            ope = 3;
-            if(valida(t, c)){
-                t = t + '*';
-                c++;
-            }
-
-        }
-        if(s == opeButton[4]){
-            //÷ 
-            ope = 4;
-            if(valida(t, c)){
-                t = t + '/';
-                c++;
-            }
-        }
-        if(s == opeButton[5]){
-            //π
-            n[c] = "3.14159265359";
-            if (c==1) {
-                t = n[0] + operando() + n[1];
-            } else {
-                t = n[0];
-            }
-            
-        }
-        if(s == opeButton[6]){
-            //√
-            
-            if(valida(t, c) && ope != 5){
-                if(c!=1){
-                    t = '√' + t;
-                    ope = 5;
-                    efectuaOp(n, ope);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error, la raíz es de un solo número", "Error - Raíz", JOptionPane.WARNING_MESSAGE);
-                }
+            if(s == opeButton[0]){
+                //=
+                efectuaOp(n, ope);
                 
             }
-            
+            if(s == opeButton[1]){
+                //+
+                
+                if(valida(t, c)){
+                    t = t + '+';
+                    c++;
+                    ope = 1;
+                }
+            }
+            if(s == opeButton[2]){
+                //-
+    
+               if(valida(t, c)){
+                    t = t + '-';
+                    c++;
+                    ope = 2;
+                }
+    
+            }
+            if(s == opeButton[3]){
+                //*
+                
+                if(valida(t, c)){
+                    t = t + '*';
+                    c++;
+                    ope = 3;
+                }
+    
+            }
+            if(s == opeButton[4]){
+                //÷ 
+                
+                if(valida(t, c)){
+                    t = t + '/';
+                    c++;
+                    ope = 4;
+                }
+            }
+            if(s == opeButton[5]){
+                //π
+                n[c] = "3.14159265359";
+                if (c==1) {
+                    t = n[0] + operando() + n[1];
+                } else {
+                    t = n[0];
+                }
+            }
+            if(s == opeButton[6]){
+                //√
+                if(valida(t, c) && ope != 5){
+                    if(c!=1){
+                        t = '√' + t;
+                        ope = 5;
+                        efectuaOp(n, ope);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error, la raíz es de un solo número", "Error - Raíz", JOptionPane.WARNING_MESSAGE);
+                    } 
+                }
+            }
         }
         if(s == opeButton[7]){
             //C
@@ -290,6 +286,7 @@ public class Calculadora implements ActionListener {
             default:
                 break;
         }
+        resuelto = 1;
     }
     private char operando(){
         char opera ='-';
@@ -322,9 +319,9 @@ public class Calculadora implements ActionListener {
             if((!(a.charAt(a.length()-1) == '-' ||  a.charAt(a.length()-1) == '+' || a.charAt(a.length()-1) == '*' || a.charAt(a.length()-1) == '/' || a.charAt(a.length()-1) == '-' || a.charAt(a.length()-1) == '^')) && l != 1){
                 c = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Hubo algún error en su escritura", "Error - Escritura", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al intentar efectual la acción", "Error - Escritura", JOptionPane.WARNING_MESSAGE);
             }
-        } else JOptionPane.showMessageDialog(null, "Hubo algún error en su escritura", "Error - Escritura", JOptionPane.WARNING_MESSAGE);
+        } else JOptionPane.showMessageDialog(null, "Error al intentar efectual la acción", "Error - Escritura", JOptionPane.WARNING_MESSAGE);
         return c;
     }
 
