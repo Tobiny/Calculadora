@@ -18,6 +18,7 @@ public class FrameCalculadora extends JFrame {
         JTextField oJTextField = new JTextField("Operación");
         textJPanel.add(rJTextField, BorderLayout.CENTER);
         textJPanel.add(oJTextField, BorderLayout.SOUTH);
+        
         JPanel numJPanel = new JPanel(new GridLayout(5,4, 2, 2));
         numJPanel.setPreferredSize(new Dimension(280, 280));
         
@@ -28,6 +29,7 @@ public class FrameCalculadora extends JFrame {
         JButton numButton[] = new JButton[10];
         JButton opeButton[] = new JButton[9];
         JButton pButton = new JButton(".");
+        pButton.addActionListener(this);
 
         opeButton[0] = new JButton("=");
         opeButton[1] = new JButton("+");
@@ -38,10 +40,13 @@ public class FrameCalculadora extends JFrame {
         opeButton[6] = new JButton("1/x");
         opeButton[7] = new JButton("C");
         opeButton[8] = new JButton("^");
-
+        for (int i = 0; i < opeButton.length; i++) {
+            opeButton[i].addActionListener(this);
+        }
 
         for (int i = 0; i < numButton.length; i++) {
             numButton[i] = new JButton(""+i);
+            numButton[i].addActionListener(this);
         }
 
         numJPanel.add(opeButton[7]);

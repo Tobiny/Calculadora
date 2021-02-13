@@ -1,14 +1,15 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 
 public class Calculadora implements ActionListener {
-
+    private int c = 0;
     private JFrame frame;
-    private JPanel txtPanel;
-    private JPanel numJPanel;
-    private JTextField resTxtF;
-    private JTextField opeTxtF;
+    private JPanel txtPanel, numPanel;
+    private JTextField resTxtF, opeTxtF;
+    private JButton numButton[], opeButton[], pButton;
     
     
     public Calculadora(){
@@ -27,19 +28,20 @@ public class Calculadora implements ActionListener {
         opeTxtF =new JTextField("Operación");
 
         txtPanel.add(resTxtF, BorderLayout.CENTER);
-        txtPanel.add(txtPanel, BorderLayout.CENTER);
+        txtPanel.add(opeTxtF, BorderLayout.SOUTH);
 
         //Panel de los botones
-        numJPanel = new JPanel(new GridLayout(5,4, 2, 2));
-        numJPanel.setPreferredSize(new Dimension(280, 280));
+        numPanel = new JPanel(new GridLayout(5,4, 2, 2));
+        numPanel.setPreferredSize(new Dimension(280, 280));
         
-        frame.add(textJPanel);
-        frame.add(numJPanel);
+        frame.add(txtPanel);
+        frame.add(numPanel);
         
 
-        JButton numButton[] = new JButton[10];
-        JButton opeButton[] = new JButton[9];
-        JButton pButton = new JButton(".");
+        numButton = new JButton[10];
+        opeButton = new JButton[9];
+        pButton = new JButton(".");
+        pButton.addActionListener(this);
 
         opeButton[0] = new JButton("=");
         opeButton[1] = new JButton("+");
@@ -50,35 +52,38 @@ public class Calculadora implements ActionListener {
         opeButton[6] = new JButton("1/x");
         opeButton[7] = new JButton("C");
         opeButton[8] = new JButton("^");
-
-
+        //Añadimos a todos el ActionListener
+        for (int i = 0; i < opeButton.length; i++) {
+            opeButton[i].addActionListener(this);
+        }
         for (int i = 0; i < numButton.length; i++) {
             numButton[i] = new JButton(""+i);
+            numButton[i].addActionListener(this);
         }
 
-        numJPanel.add(opeButton[7]);
-        numJPanel.add(opeButton[5]);
-        numJPanel.add(opeButton[4]);
-        numJPanel.add(opeButton[6]);
-        numJPanel.add(numButton[7]);
-        numJPanel.add(numButton[8]);
-        numJPanel.add(numButton[9]);
-        numJPanel.add(opeButton[3]);
+        numPanel.add(opeButton[7]);
+        numPanel.add(opeButton[5]);
+        numPanel.add(opeButton[4]);
+        numPanel.add(opeButton[6]);
+        numPanel.add(numButton[7]);
+        numPanel.add(numButton[8]);
+        numPanel.add(numButton[9]);
+        numPanel.add(opeButton[3]);
 
-        numJPanel.add(numButton[4]);
-        numJPanel.add(numButton[5]);
-        numJPanel.add(numButton[6]);
+        numPanel.add(numButton[4]);
+        numPanel.add(numButton[5]);
+        numPanel.add(numButton[6]);
 
-        numJPanel.add(opeButton[2]);
+        numPanel.add(opeButton[2]);
 
-        numJPanel.add(numButton[1]);
-        numJPanel.add(numButton[2]);
-        numJPanel.add(numButton[3]);
-        numJPanel.add(opeButton[1]);
+        numPanel.add(numButton[1]);
+        numPanel.add(numButton[2]);
+        numPanel.add(numButton[3]);
+        numPanel.add(opeButton[1]);
 
-        numJPanel.add(numButton[0]);
-        numJPanel.add(pButton);
-        numJPanel.add(opeButton[0]);
+        numPanel.add(numButton[0]);
+        numPanel.add(pButton);
+        numPanel.add(opeButton[0]);
 
         frame.setVisible(true);
 
@@ -86,4 +91,14 @@ public class Calculadora implements ActionListener {
     public static void main(String[] args) {
         new Calculadora();
     }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == opeButton[7]){
+            opeTxtF.setText("Se presiono C");
+        }
+
+        //c++;
+        //opeTxtF.setText("Popo "+c);
+    }
+
 }
