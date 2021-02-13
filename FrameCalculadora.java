@@ -1,6 +1,4 @@
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.plaf.LayerUI;
+
 
 public class FrameCalculadora extends JFrame {
 
