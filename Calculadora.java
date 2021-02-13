@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 
 public class Calculadora implements ActionListener {
-    private int c = 0;
+
     private JFrame frame;
     private JPanel txtPanel, numPanel;
     private JTextField resTxtF, opeTxtF;
@@ -92,94 +92,126 @@ public class Calculadora implements ActionListener {
         new Calculadora();
     }
 
+
+    private String n[] = new String[2];
+    private String t = "";
+    private int c = 0;
+    private int ope = 0;
+
     public void actionPerformed(ActionEvent e) {
         JButton s = (JButton) e.getSource();
-        String temp = "";
+        
         //Evaluando cada botón
         if(s == numButton[0]){
             //0
-
+            n[c] = n[c] + 0;
+            t = t + '0';
         }
         if(s == numButton[1]){
             //1
-
+            n[c] = n[c] + 1;
+            t = t.concat("1");
         }
         if(s == numButton[2]){
             //2
-
+            n[c] = n[c] + 2;
+            t = t + '2';
         }
         if(s == numButton[3]){
             //3
-
+            n[c] = n[c] + 3;
+            t = t + '3';
         }
         if(s == numButton[4]){
             //4
-
+            n[c] = n[c] + 4;
+            t = t + 4;
         }
         if(s == numButton[5]){
             //5
-
+            n[c] = n[c] + 5;
+            t = t + 5;
         }
         if(s == numButton[6]){
             //6
-
+            n[c] = n[c] + 6;
+            t = t + 6;
         }
         if(s == numButton[7]){
             //7
-
+            n[c] = n[c] + 7;
+            t = t + 7;
         }
         if(s == numButton[8]){
             //8
-
+            n[c] = n[c] + 8;
+            t = t + 8;
         }
         if(s == numButton[9]){
             //9
-
+            n[c] = n[c] + 9;
+            t = t + 9;
         }
         if(s == opeButton[0]){
             //=
-
+            //efectuaOp();
         }
         if(s == opeButton[1]){
             //+
-
+            ope = 1;
+            t = t + '+';
         }
         if(s == opeButton[2]){
             //-
-
+            ope = 2;
+            t = t + '-';
         }
         if(s == opeButton[3]){
             //*
-
+            ope = 3;
+            t = t + '-';
         }
         if(s == opeButton[4]){
             //÷ 
-
+            ope = 4;
+            t = t + '-';
         }
         if(s == opeButton[5]){
             //π
-            temp = temp + 3.1416;
+            t = t + 3.1416;
         }
         if(s == opeButton[6]){
             //√
+            ope = 5;
 
         }
         if(s == opeButton[7]){
             //C
-
+            //borrar();
+            t ="";
         }
         if(s == opeButton[8]){
             //^
-
+            ope = 6;
+            t = t + '^';
         }
         if(s == pButton){
             //.
+
+            if(!t.isEmpty()){
+                if(!(t.charAt(t.length()-1) == '-' ||  t.charAt(t.length()-1) == '+' || t.charAt(t.length()-1) == '*' || t.charAt(t.length()-1) == '/' || t.charAt(t.length()-1) == '-' || t.charAt(t.length()-1) == '^')){
+                    n[c] = n[c] + '.';
+                    t = t + '.';
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error", "Error 2", JOptionPane.WARNING_MESSAGE);
+                }
+            }
             
         }
 
 
         //c++;
-        opeTxtF.setText(temp);
+        opeTxtF.setText(t);
     }
 
 }
